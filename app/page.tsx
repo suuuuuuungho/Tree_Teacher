@@ -143,6 +143,7 @@ export default function Home() {
           <span className="status">{statusIcon[day.status]}</span>
         </div>)}
       </div>}
+      <p className="panelNote">지난 요일 늦게라도 보고하시면 요일별 총합에 반영되어 미달성이 달성으로 바뀔 수 있어요! 지난 요일도 늦더라도 보고 꼭 해주세요!</p>
     </section>
 
     <section className="rewardRow" aria-label="보상 안내">
