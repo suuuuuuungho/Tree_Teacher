@@ -39,5 +39,5 @@ export const ROSTER: { name: string; grade: Grade }[] = [
 const ROSTER_MAP = new Map(ROSTER.map((teacher) => [teacher.name, teacher.grade]));
 
 export function gradeForName(name: string): Grade | null {
-  return ROSTER_MAP.get(name) ?? null;
+  return ROSTER_MAP.get(name.trim()) ?? null;
 }

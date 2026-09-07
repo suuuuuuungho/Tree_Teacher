@@ -104,11 +104,15 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 .gradeTrack{height:12px;border-radius:999px;background:#00000012;overflow:hidden}
 .gradeTrack span{display:block;height:100%;border-radius:inherit;background:var(--leaf)}
 
-.gradeTeacherTable{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:16px}
-.gradeTeacherTable th,.gradeTeacherTable td{width:50%;padding:12px 8px;border:1.5px solid var(--line);text-align:center}
-.gradeTeacherTable thead th{background:#f4f0dd;font-weight:400;font-size:21px}
-.gradeTeacherTable tbody td{font-size:21px}
-.gradeTeacherTable tbody td:last-child{color:var(--leaf-deep)}
+.gradeToggle{display:block;width:100%;margin-top:16px;padding:14px 10px;border:2px dashed var(--line);border-radius:16px;background:#faf6e0;color:var(--ink);font-size:19px;text-align:center;cursor:pointer}
+.gradeToggle:hover{background:var(--sky)}
+
+.gradeTeacherTableWrap{overflow-x:auto;margin-top:14px}
+.gradeTeacherTable{width:100%;min-width:640px;table-layout:fixed;border-collapse:collapse}
+.gradeTeacherTable th,.gradeTeacherTable td{padding:12px 6px;border:1.5px solid var(--line);text-align:center}
+.gradeTeacherTable thead th{background:#f4f0dd;font-weight:400;font-size:19px}
+.gradeTeacherTable tbody td{font-size:19px}
+.gradeTeacherTable tbody td:nth-child(2){color:var(--leaf-deep)}
 
 .rankingEmpty{margin:0;font-size:22px;opacity:.75}
 

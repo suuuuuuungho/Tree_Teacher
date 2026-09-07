@@ -38,7 +38,7 @@ export async function GET() {
   const dailyTotalMap: Record<string, number> = {};
 
   for (const row of perNameDateRows) {
-    const name = row.name as string;
+    const name = (row.name as string).trim();
     const date = row.date as string;
     const minutes = Number(row.total) * MINUTES_PER_COUNT;
     const grade = gradeForName(name) ?? "미배정";
