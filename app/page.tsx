@@ -5,6 +5,7 @@ import { WINDOW_START, WINDOW_END, DAILY_GOAL_MINUTES, WEEKLY_GOAL_MINUTES } fro
 
 type DayStat = { date: string; label: string; minutes: number };
 type GradeStat = { grade: string; total: number; entries: number; byDate: DayStat[] };
+type TeacherStat = { name: string; grade: string; total: number; byDate: DayStat[] };
 
 type Summary = {
   configured: boolean;
@@ -13,6 +14,8 @@ type Summary = {
   todayTotal?: number;
   weekTotal?: number;
   byGrade?: GradeStat[];
+  teachers?: TeacherStat[];
+  dailyTotals?: DayStat[];
 };
 
 function formatHours(minutes: number) {
@@ -61,15 +64,28 @@ export default function Home() {
   }, []);
 
   const byGrade = summary.byGrade ?? [];
+  const teachers = summary.teachers ?? [];
+  const dailyTotals = summary.dailyTotals ?? [];
   const competing = byGrade.filter((row) => row.grade !== "미배정");
-  const topGrade = competing[0];
-  const lastGrade = competing.length > 0 ? competing[competing.length - 1] : undefined;
-  const lastGradeNames = lastGrade && competing.length > 1 && lastGrade.total < (topGrade?.total ?? 0)
+  const rankedByTotal = [...competing].sort((a, b) => b.total - a.total);
+  const topGrade = rankedByTotal[0];
+  const lastGrade = rankedByTotal.length > 0 ? rankedByTotal[rankedByTotal.length - 1] : undefined;
+  const lastGradeNames = lastGrade && rankedByTotal.length > 1 && lastGrade.total < (topGrade?.total ?? 0)
     ? competing.filter((row) => row.total === lastGrade.total).map((row) => row.grade)
     : [];
   const weekTotal = summary.weekTotal ?? 0;
   const todayTotal = summary.todayTotal ?? 0;
   const weekGoalMet = weekTotal >= WEEKLY_GOAL_MINUTES;
+  const remainingHours = Math.ceil(Math.max(0, WEEKLY_GOAL_MINUTES - weekTotal) / 60);
+  const dailyStatus = dailyTotals.map((day) => {
+    let status: "pass" | "fail" | "today" | "upcoming" = "upcoming";
+    if (summary.today) {
+      if (day.date < summary.today) status = day.minutes >= DAILY_GOAL_MINUTES ? "pass" : "fail";
+      else if (day.date === summary.today) status = "today";
+    }
+    return { ...day, status };
+  });
+  const statusIcon = { pass: "✅", fail: "❌", today: "⏳", upcoming: "-" } as const;
 
   return <main>
     <section className="hero">
@@ -113,6 +129,20 @@ export default function Home() {
       </div>
     </section>
 
+    <section className="panel" aria-labelledby="daily-title">
+      <div className="panelHeader">
+        <h2 id="daily-title">요일별 목표 달성 현황</h2>
+        <span className="badgeSmall">목표 50시간/일</span>
+      </div>
+      {!summary.configured ? <p className="rankingEmpty">통계를 불러오고 있어요.</p> : <div className="dailyGoalGrid">
+        {dailyStatus.map((day) => <div className={`dailyGoalCell ${day.status}`} key={day.date}>
+          <span className="dow">{day.label}</span>
+          <span className="hrs">{Math.floor(day.minutes / 60)}시간</span>
+          <span className="status">{statusIcon[day.status]}</span>
+        </div>)}
+      </div>}
+    </section>
+
     <section className="rewardRow" aria-label="보상 안내">
       <div className="rewardCard yes">
         <p>300시간 채우면</p>
@@ -124,7 +154,6 @@ export default function Home() {
         <p>못 채우면</p>
         <p>교사회의 간식</p>
         <strong>꼴찌 학년이 쏜다!</strong>
-        {lastGradeNames.length > 0 && !weekGoalMet && <span className="liveTag">지금 꼴찌: {lastGradeNames.join(", ")}</span>}
       </div>
     </section>
 
@@ -135,6 +164,14 @@ export default function Home() {
       <span className="processArrow">▶</span>
       <div className="processStep yellow"><span>간식 쓰기</span><strong>다음 주</strong></div>
     </div>
+
+    {summary.configured && <div className="statusBox">
+      {weekGoalMet
+        ? <p>지금대로라면 <strong>부장님</strong>이 쏩니다! 🎉</p>
+        : lastGradeNames.length > 0
+          ? <p>지금대로라면 <strong>{lastGradeNames.join(", ")}</strong>이 쏴야해요! 단, <strong>{remainingHours}시간</strong> 더 채우면 부장님이 쏩니다!</p>
+          : <p>아직 집계된 기록이 없어요.</p>}
+    </div>}
 
     <div className="infoBox">
       <h3>정산은 이렇게!</h3>
@@ -169,6 +206,31 @@ export default function Home() {
             </div>
           </div>;
         })}
+      </div>}
+    </section>
+
+    <section className="panel" aria-labelledby="teacher-title">
+      <div className="panelHeader">
+        <h2 id="teacher-title">교사별 기록</h2>
+        <span className="badgeSmall">{WINDOW_START.slice(5)}~{WINDOW_END.slice(5)}</span>
+      </div>
+      {!summary.configured ? <p className="rankingEmpty">통계를 불러오고 있어요.</p> : teachers.length === 0 ? <p className="rankingEmpty">아직 집계된 기록이 없어요.</p> : <div className="teacherTableWrap">
+        <table className="teacherTable">
+          <thead>
+            <tr>
+              <th className="teacherNameCol">이름</th>
+              {teachers[0].byDate.map((day) => <th key={day.date}>{day.label}</th>)}
+              <th>합계</th>
+            </tr>
+          </thead>
+          <tbody>
+            {teachers.map((teacher) => <tr key={teacher.name}>
+              <td className="teacherNameCol"><strong>{teacher.name}</strong><small>{teacher.grade}</small></td>
+              {teacher.byDate.map((day) => <td key={day.date}>{formatDay(day.minutes)}</td>)}
+              <td className="teacherTotalCol">{formatHours(teacher.total)}</td>
+            </tr>)}
+          </tbody>
+        </table>
       </div>}
     </section>
 

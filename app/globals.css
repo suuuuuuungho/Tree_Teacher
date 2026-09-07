@@ -38,13 +38,13 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 .decor.star2{top:8%;right:0;color:#eeb711;font-size:22px}
 .decor.star3{bottom:8%;right:8%;color:#4f8b2c;font-size:30px}
 
-.starburst{position:relative;margin:26px auto 0;width:min(92%,520px);aspect-ratio:1/0.86;display:flex;align-items:center;justify-content:center}
+.starburst{position:relative;margin:26px auto 0;width:min(96%,580px);aspect-ratio:1/0.9;display:flex;align-items:center;justify-content:center}
 .starburstShape{position:absolute;inset:0;background:var(--white);border:3px solid var(--line);clip-path:polygon(50.00% 0.00%, 55.83% 9.42%, 64.09% 2.03%, 67.03% 12.71%, 77.03% 7.94%, 76.85% 19.01%, 87.79% 17.26%, 84.49% 27.83%, 95.48% 29.23%, 89.34% 38.45%, 99.49% 42.88%, 91.00% 50.00%, 99.49% 57.12%, 89.34% 61.55%, 95.48% 70.77%, 84.49% 72.17%, 87.79% 82.74%, 76.85% 80.99%, 77.03% 92.06%, 67.03% 87.29%, 64.09% 97.97%, 55.83% 90.58%, 50.00% 100.00%, 44.17% 90.58%, 35.91% 97.97%, 32.97% 87.29%, 22.97% 92.06%, 23.15% 80.99%, 12.21% 82.74%, 15.51% 72.17%, 4.52% 70.77%, 10.66% 61.55%, 0.51% 57.12%, 9.00% 50.00%, 0.51% 42.88%, 10.66% 38.45%, 4.52% 29.23%, 15.51% 27.83%, 12.21% 17.26%, 23.15% 19.01%, 22.97% 7.94%, 32.97% 12.71%, 35.91% 2.03%, 44.17% 9.42%)}
-.starburstInner{position:relative;z-index:1;padding:14px 20px;max-width:70%}
-.starburstInner .eyebrow{margin:0;font-size:20px;color:var(--ink)}
-.starburstInner h1{margin:10px 0 6px;font-size:clamp(28px,6vw,40px);font-weight:400;line-height:1.28}
-.starburstInner h1 mark{background:var(--yellow);padding:3px 10px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.starburstInner .sub{margin:2px 0 0;font-size:clamp(26px,5.6vw,34px)}
+.starburstInner{position:relative;z-index:1;padding:14px 20px;max-width:78%}
+.starburstInner .eyebrow{margin:0;font-size:clamp(20px,4vw,27px);color:var(--ink)}
+.starburstInner h1{margin:14px 0 10px;font-size:clamp(38px,9vw,58px);font-weight:400;line-height:1.24}
+.starburstInner h1 mark{background:var(--yellow);padding:4px 12px;border-radius:10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.starburstInner .sub{margin:2px 0 0;font-size:clamp(34px,7.6vw,48px)}
 
 .treeMascot{position:absolute;left:-4px;bottom:2%;width:76px}
 .spiritBadge{position:absolute;right:-6px;bottom:10%}
@@ -113,6 +113,33 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 
 .rankingEmpty{margin:0;font-size:20px;opacity:.75}
 
+/* ---------- daily goal status ---------- */
+.dailyGoalGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.dailyGoalCell{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 6px;border:2.5px solid var(--line);border-radius:18px;background:#faf6e0}
+.dailyGoalCell .dow{font-size:19px}
+.dailyGoalCell .hrs{font-size:17px;opacity:.75}
+.dailyGoalCell .status{font-size:24px}
+.dailyGoalCell.pass{background:#eaf6e3;border-color:var(--leaf)}
+.dailyGoalCell.fail{background:#fbe7e3;border-color:var(--coral-deep)}
+.dailyGoalCell.today{background:#fff6d8;border-color:var(--yellow-deep)}
+.dailyGoalCell.upcoming{opacity:.55}
+
+/* ---------- status box ---------- */
+.statusBox{margin-top:22px;padding:26px 24px;border:3px solid var(--line);border-radius:26px;background:var(--card);box-shadow:4px 5px 0 #00000012;text-align:center}
+.statusBox p{margin:0;font-size:22px;line-height:1.6}
+.statusBox strong{color:var(--coral-deep);font-weight:400}
+
+/* ---------- teacher table ---------- */
+.teacherTableWrap{overflow-x:auto}
+.teacherTable{border-collapse:collapse;width:100%;min-width:600px;font-size:18px}
+.teacherTable th,.teacherTable td{padding:12px 10px;border:1.5px solid var(--line);text-align:center;white-space:nowrap}
+.teacherTable thead th{background:#f4f0dd;font-size:17px;font-weight:400}
+.teacherTable td.teacherNameCol,.teacherTable th.teacherNameCol{text-align:left;position:sticky;left:0;background:#fff;z-index:1;min-width:130px}
+.teacherTable thead th.teacherNameCol{z-index:2;background:#f4f0dd}
+.teacherTable td.teacherNameCol strong{display:block;font-size:19px}
+.teacherTable td.teacherNameCol small{display:block;color:var(--leaf-deep);font-size:14px}
+.teacherTable td.teacherTotalCol{color:var(--leaf-deep);font-weight:600}
+
 *:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:3px}
 
 @media(max-width:640px){
@@ -129,4 +156,6 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
   .gradeDayGrid{grid-template-columns:repeat(3,1fr)}
   .gradeName{font-size:21px}
   .gradeHours{font-size:20px}
+  .dailyGoalGrid{grid-template-columns:repeat(3,1fr);gap:8px}
+  .statusBox p{font-size:19px}
 }
