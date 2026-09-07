@@ -4,8 +4,11 @@ import { GRADES, gradeForName } from "../../../lib/roster";
 import { kstToday, isWithinWindow, WINDOW_START, WINDOW_END, WINDOW_DATES } from "../../../lib/window";
 
 const STAFF_GROUPS = ["교사", "교역자"];
-const MINUTES_PER_COUNT = 30;
 const GRADE_ORDER = [...GRADES, "미배정"];
+// Every query below sums COALESCE(minutes, prayer_count * 30): staff can log an exact
+// custom duration ("기타(직접입력)"), which is more accurate than prayer_count * 30 --
+// that alone only captures the duration quantized into 30-minute steps (capped at
+// 10 = 300min). Older/non-custom rows have no minutes, hence the fallback.
 
 type GradeAgg = { total: number; names: Set<string>; byDate: Record<string, number> };
 type NameAgg = { grade: string; total: number; byDate: Record<string, number> };
@@ -18,11 +21,11 @@ export async function GET() {
   const todayInWindow = isWithinWindow(today);
 
   const [todayRows, weekRows, perNameDateRows] = await Promise.all([
-    sql`SELECT COALESCE(SUM(prayer_count), 0)::int AS total
+    sql`SELECT COALESCE(SUM(COALESCE(minutes, prayer_count * 30)), 0)::int AS total
         FROM prayers WHERE school_group = ANY(${STAFF_GROUPS}) AND prayer_date = ${today}`,
-    sql`SELECT COALESCE(SUM(prayer_count), 0)::int AS total
+    sql`SELECT COALESCE(SUM(COALESCE(minutes, prayer_count * 30)), 0)::int AS total
         FROM prayers WHERE school_group = ANY(${STAFF_GROUPS}) AND prayer_date BETWEEN ${WINDOW_START} AND ${WINDOW_END}`,
-    sql`SELECT name, prayer_date::text AS date, SUM(prayer_count)::int AS total
+    sql`SELECT name, prayer_date::text AS date, SUM(COALESCE(minutes, prayer_count * 30))::int AS total
         FROM prayers WHERE school_group = ANY(${STAFF_GROUPS}) AND prayer_date BETWEEN ${WINDOW_START} AND ${WINDOW_END}
         GROUP BY name, prayer_date`,
   ]);
@@ -40,7 +43,7 @@ export async function GET() {
   for (const row of perNameDateRows) {
     const name = (row.name as string).trim();
     const date = row.date as string;
-    const minutes = Number(row.total) * MINUTES_PER_COUNT;
+    const minutes = Number(row.total);
     const grade = gradeForName(name) ?? "미배정";
 
     const gradeAgg = ensureGrade(grade);
@@ -83,8 +86,8 @@ export async function GET() {
     configured: true,
     today,
     todayInWindow,
-    todayTotal: Number(todayRows[0].total) * MINUTES_PER_COUNT,
-    weekTotal: Number(weekRows[0].total) * MINUTES_PER_COUNT,
+    todayTotal: Number(todayRows[0].total),
+    weekTotal: Number(weekRows[0].total),
     byGrade,
     teachers,
     dailyTotals,
