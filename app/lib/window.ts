@@ -4,6 +4,8 @@ export const WINDOW_END = "2026-09-12";
 
 export const DAILY_GOAL_MINUTES = 50 * 60;
 export const WEEKLY_GOAL_MINUTES = 300 * 60;
+export const STAFF_HEADCOUNT = 38;
+export const TREE_SITE_URL = "https://tree-kappa-black.vercel.app";
 
 export const WINDOW_DATES = [
   { date: "2026-09-07", label: "월" },

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { WINDOW_START, WINDOW_END, DAILY_GOAL_MINUTES, WEEKLY_GOAL_MINUTES } from "./lib/window";
+import { WINDOW_START, WINDOW_END, DAILY_GOAL_MINUTES, WEEKLY_GOAL_MINUTES, STAFF_HEADCOUNT, TREE_SITE_URL } from "./lib/window";
 
 type DayStat = { date: string; label: string; minutes: number };
 type GradeStat = { grade: string; total: number; entries: number; byDate: DayStat[] };
@@ -23,13 +23,6 @@ function formatHours(minutes: number) {
   const rest = minutes % 60;
   if (minutes <= 0) return "0시간";
   return rest === 0 ? `${hours}시간` : `${hours}시간 ${rest}분`;
-}
-
-function formatDay(minutes: number) {
-  if (minutes <= 0) return "-";
-  const hours = Math.floor(minutes / 60);
-  const rest = minutes % 60;
-  return rest === 0 ? `${hours}시간` : `${hours}.${Math.round((rest / 60) * 10)}시간`;
 }
 
 function TreeMascot() {
@@ -76,7 +69,9 @@ export default function Home() {
   const weekTotal = summary.weekTotal ?? 0;
   const todayTotal = summary.todayTotal ?? 0;
   const weekGoalMet = weekTotal >= WEEKLY_GOAL_MINUTES;
-  const remainingHours = Math.ceil(Math.max(0, WEEKLY_GOAL_MINUTES - weekTotal) / 60);
+  const remainingMinutesTotal = Math.max(0, WEEKLY_GOAL_MINUTES - weekTotal);
+  const remainingHours = Math.ceil(remainingMinutesTotal / 60);
+  const perPersonMinutes = Math.ceil(remainingMinutesTotal / STAFF_HEADCOUNT);
   const dailyStatus = dailyTotals.map((day) => {
     let status: "pass" | "fail" | "today" | "upcoming" = "upcoming";
     if (summary.today) {
@@ -162,14 +157,18 @@ export default function Home() {
       <span className="processArrow">▶</span>
       <div className="processStep sky"><span>발표</span><strong>주일 교사회의</strong></div>
       <span className="processArrow">▶</span>
-      <div className="processStep yellow"><span>간식 쓰기</span><strong>다음 주</strong></div>
+      <div className="processStep yellow"><span>간식 쏘기</span><strong>다음 주</strong></div>
     </div>
 
     {summary.configured && <div className="statusBox">
       {weekGoalMet
         ? <p>지금대로라면 <strong>부장님</strong>이 쏩니다! 🎉</p>
         : lastGradeNames.length > 0
-          ? <p>지금대로라면 <strong>{lastGradeNames.join(", ")}</strong>이 쏴야해요! 단, <strong>{remainingHours}시간</strong> 더 채우면 부장님이 쏩니다!</p>
+          ? <>
+            <p>지금대로라면 <strong>{lastGradeNames.join(", ")}</strong>이 쏴야해요! 단, <strong>{remainingHours}시간</strong> 더 채우면 부장님이 쏩니다!</p>
+            <p>하루에 <strong>{perPersonMinutes}분</strong>만큼만 기도하면 돼요!</p>
+            <p className="statusNote">* 하루에 할당된 기도시간이 많다고 놀라거나 포기하지 마셔요. 기도시간 입력 안하신 분이 계셔서 그래요. 기도시간 입력하면 자연스럽게 줄어듭니다.</p>
+          </>
           : <p>아직 집계된 기록이 없어요.</p>}
     </div>}
 
@@ -183,6 +182,8 @@ export default function Home() {
       </ul>
     </div>
 
+    <a className="gotoButton" href={TREE_SITE_URL} target="_blank" rel="noopener noreferrer">기도 보고 하러 가기 ▶</a>
+
     <section className="panel" aria-labelledby="grade-title">
       <div className="panelHeader">
         <h2 id="grade-title">학년별 통계</h2>
@@ -191,6 +192,7 @@ export default function Home() {
       {!summary.configured ? <p className="rankingEmpty">통계를 불러오고 있어요.</p> : byGrade.length === 0 ? <p className="rankingEmpty">아직 집계된 기록이 없어요.</p> : <div className="gradeList">
         {byGrade.map((row) => {
           const fairShare = WEEKLY_GOAL_MINUTES / Math.max(1, competing.length);
+          const gradeTeachers = teachers.filter((teacher) => teacher.grade === row.grade);
           return <div className="gradeRow" key={row.grade}>
             <div className="gradeRowTop">
               <span className="gradeName">{row.grade}</span>
@@ -198,39 +200,19 @@ export default function Home() {
               <span className="gradeHours">{formatHours(row.total)}</span>
             </div>
             {row.grade !== "미배정" && <div className="gradeTrack"><span style={{ width: `${Math.min(100, (row.total / fairShare) * 100)}%` }} /></div>}
-            <div className="gradeDayGrid">
-              {row.byDate.map((day) => <div className={`gradeDayCell${day.minutes > 0 ? " hasValue" : ""}`} key={day.date}>
-                <span className="dow">{day.label}</span>
-                <span className="val">{formatDay(day.minutes)}</span>
-              </div>)}
-            </div>
+            {gradeTeachers.length > 0 && <table className="gradeTeacherTable">
+              <thead>
+                <tr><th>이름</th><th>합계</th></tr>
+              </thead>
+              <tbody>
+                {gradeTeachers.map((teacher) => <tr key={teacher.name}>
+                  <td>{teacher.name}</td>
+                  <td>{formatHours(teacher.total)}</td>
+                </tr>)}
+              </tbody>
+            </table>}
           </div>;
         })}
-      </div>}
-    </section>
-
-    <section className="panel" aria-labelledby="teacher-title">
-      <div className="panelHeader">
-        <h2 id="teacher-title">교사별 기록</h2>
-        <span className="badgeSmall">{WINDOW_START.slice(5)}~{WINDOW_END.slice(5)}</span>
-      </div>
-      {!summary.configured ? <p className="rankingEmpty">통계를 불러오고 있어요.</p> : teachers.length === 0 ? <p className="rankingEmpty">아직 집계된 기록이 없어요.</p> : <div className="teacherTableWrap">
-        <table className="teacherTable">
-          <thead>
-            <tr>
-              <th className="teacherNameCol">이름</th>
-              {teachers[0].byDate.map((day) => <th key={day.date}>{day.label}</th>)}
-              <th>합계</th>
-            </tr>
-          </thead>
-          <tbody>
-            {teachers.map((teacher) => <tr key={teacher.name}>
-              <td className="teacherNameCol"><strong>{teacher.name}</strong><small>{teacher.grade}</small></td>
-              {teacher.byDate.map((day) => <td key={day.date}>{formatDay(day.minutes)}</td>)}
-              <td className="teacherTotalCol">{formatHours(teacher.total)}</td>
-            </tr>)}
-          </tbody>
-        </table>
       </div>}
     </section>
 

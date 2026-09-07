@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 html,body,button,input,select{font-family:inherit}
-body{margin:0;background:radial-gradient(circle at 18% 0%,var(--bg-deep) 0%,var(--bg) 46%);color:var(--ink);font-family:var(--font-hand);font-size:18px;word-break:keep-all}
+body{margin:0;background:radial-gradient(circle at 18% 0%,var(--bg-deep) 0%,var(--bg) 46%);color:var(--ink);font-family:var(--font-hand);font-size:21px;word-break:keep-all}
 button,input,select{font:inherit}
 strong,b{font-weight:inherit}
 main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relative}
@@ -24,7 +24,7 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 /* ---------- hero / poster header ---------- */
 .hero{position:relative;padding:8px 0 28px;text-align:center}
 .heroBadges{display:flex;align-items:flex-start;justify-content:space-between;padding:0 4px;margin-bottom:-18px;position:relative;z-index:2}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:14px 22px;border:2.5px solid var(--line);border-radius:999px;font-size:20px;line-height:1;background:var(--mint);box-shadow:3px 4px 0 #00000014;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:16px 24px;border:2.5px solid var(--line);border-radius:999px;font-size:23px;line-height:1;background:var(--mint);box-shadow:3px 4px 0 #00000014;white-space:nowrap}
 .pill:after{content:"";position:absolute;width:12px;height:12px;background:inherit;border-right:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:translateY(60%) rotate(45deg);left:26px;bottom:-9px}
 .pill{position:relative}
 .pill.pink{background:var(--pink)}
@@ -41,10 +41,10 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 .starburst{position:relative;margin:26px auto 0;width:min(96%,580px);aspect-ratio:1/0.9;display:flex;align-items:center;justify-content:center}
 .starburstShape{position:absolute;inset:0;background:var(--white);border:3px solid var(--line);clip-path:polygon(50.00% 0.00%, 55.83% 9.42%, 64.09% 2.03%, 67.03% 12.71%, 77.03% 7.94%, 76.85% 19.01%, 87.79% 17.26%, 84.49% 27.83%, 95.48% 29.23%, 89.34% 38.45%, 99.49% 42.88%, 91.00% 50.00%, 99.49% 57.12%, 89.34% 61.55%, 95.48% 70.77%, 84.49% 72.17%, 87.79% 82.74%, 76.85% 80.99%, 77.03% 92.06%, 67.03% 87.29%, 64.09% 97.97%, 55.83% 90.58%, 50.00% 100.00%, 44.17% 90.58%, 35.91% 97.97%, 32.97% 87.29%, 22.97% 92.06%, 23.15% 80.99%, 12.21% 82.74%, 15.51% 72.17%, 4.52% 70.77%, 10.66% 61.55%, 0.51% 57.12%, 9.00% 50.00%, 0.51% 42.88%, 10.66% 38.45%, 4.52% 29.23%, 15.51% 27.83%, 12.21% 17.26%, 23.15% 19.01%, 22.97% 7.94%, 32.97% 12.71%, 35.91% 2.03%, 44.17% 9.42%)}
 .starburstInner{position:relative;z-index:1;padding:14px 20px;max-width:78%}
-.starburstInner .eyebrow{margin:0;font-size:clamp(20px,4vw,27px);color:var(--ink)}
-.starburstInner h1{margin:14px 0 10px;font-size:clamp(38px,9vw,58px);font-weight:400;line-height:1.24}
+.starburstInner .eyebrow{margin:0;font-size:clamp(22px,4.6vw,30px);color:var(--ink)}
+.starburstInner h1{margin:16px 0 12px;font-size:clamp(44px,10.5vw,68px);font-weight:400;line-height:1.22}
 .starburstInner h1 mark{background:var(--yellow);padding:4px 12px;border-radius:10px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.starburstInner .sub{margin:2px 0 0;font-size:clamp(34px,7.6vw,48px)}
+.starburstInner .sub{margin:2px 0 0;font-size:clamp(38px,8.6vw,54px)}
 
 .treeMascot{position:absolute;left:-4px;bottom:2%;width:76px}
 .spiritBadge{position:absolute;right:-6px;bottom:10%}
@@ -52,12 +52,12 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 /* ---------- goal cards ---------- */
 .goalRow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
 .goalCard{display:flex;flex-direction:column;align-items:center;gap:14px}
-.goalLabel{display:inline-block;padding:14px 20px;border:2.5px solid var(--line);border-radius:999px;font-size:20px;background:var(--mint);box-shadow:3px 4px 0 #00000014}
+.goalLabel{display:inline-block;padding:16px 22px;border:2.5px solid var(--line);border-radius:999px;font-size:23px;background:var(--mint);box-shadow:3px 4px 0 #00000014}
 .goalLabel.sky{background:var(--sky)}
 .goalBox{width:100%;padding:26px 12px;text-align:center;border:3px solid var(--line);border-radius:26px;background:var(--card);box-shadow:4px 5px 0 #00000012}
-.goalBox strong{font-size:clamp(44px,9vw,64px);font-weight:400;color:var(--ink)}
-.goalBox em{margin-left:8px;font-size:23px;font-style:normal;color:var(--ink);opacity:.75}
-.goalBox small{display:block;margin-top:10px;font-size:17px;opacity:.7}
+.goalBox strong{font-size:clamp(50px,10.5vw,74px);font-weight:400;color:var(--ink)}
+.goalBox em{margin-left:8px;font-size:26px;font-style:normal;color:var(--ink);opacity:.75}
+.goalBox small{display:block;margin-top:10px;font-size:19px;opacity:.7}
 .goalTrack{margin-top:12px;height:12px;border-radius:999px;background:#00000012;overflow:hidden}
 .goalTrack span{display:block;height:100%;border-radius:inherit;background:var(--leaf);transition:width .4s ease}
 
@@ -66,96 +66,93 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 .rewardCard{padding:28px 20px;text-align:center;border:3px solid var(--line);border-radius:26px;box-shadow:4px 5px 0 #00000012}
 .rewardCard.yes{background:var(--yellow)}
 .rewardCard.no{background:var(--coral)}
-.rewardCard p{margin:0 0 8px;font-size:21px}
-.rewardCard strong{display:block;margin-top:8px;font-size:clamp(24px,4.6vw,30px);font-weight:400}
-.rewardCard .liveTag{display:inline-block;margin-top:16px;padding:8px 16px;border-radius:999px;background:#ffffffb0;border:2px solid var(--line);font-size:17px}
+.rewardCard p{margin:0 0 8px;font-size:24px}
+.rewardCard strong{display:block;margin-top:8px;font-size:clamp(27px,5.4vw,34px);font-weight:400}
+.rewardCard .liveTag{display:inline-block;margin-top:16px;padding:8px 16px;border-radius:999px;background:#ffffffb0;border:2px solid var(--line);font-size:19px}
 
 /* ---------- process pills ---------- */
 .processRow{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:26px;flex-wrap:wrap}
 .processStep{flex:1;min-width:120px;max-width:180px;padding:20px 10px;text-align:center;border:2.5px solid var(--line);border-radius:22px;background:var(--mint)}
 .processStep.sky{background:var(--sky)}
 .processStep.yellow{background:var(--yellow)}
-.processStep span{display:block;font-size:18px;opacity:.8}
-.processStep strong{display:block;margin-top:8px;font-size:24px;font-weight:400}
-.processArrow{font-size:24px;color:var(--ink);flex:none}
+.processStep span{display:block;font-size:20px;opacity:.8}
+.processStep strong{display:block;margin-top:8px;font-size:27px;font-weight:400}
+.processArrow{font-size:27px;color:var(--ink);flex:none}
 
 /* ---------- info box ---------- */
 .infoBox{margin-top:22px;padding:30px 26px;border:3px solid var(--line);border-radius:28px;background:var(--card);box-shadow:4px 5px 0 #00000012}
-.infoBox h3{margin:0 0 18px;font-size:28px;font-weight:400}
+.infoBox h3{margin:0 0 18px;font-size:31px;font-weight:400}
 .infoBox ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
-.infoBox li{display:flex;gap:10px;align-items:baseline;font-size:20px;line-height:1.5}
+.infoBox li{display:flex;gap:10px;align-items:baseline;font-size:22px;line-height:1.5}
 .infoBox li:before{content:"";width:10px;height:10px;flex:none;border-radius:50%;background:var(--leaf);margin-top:8px}
 
-.closing{margin:44px 0 0;text-align:center;color:var(--leaf-deep);font-size:28px}
+.closing{margin:44px 0 0;text-align:center;color:var(--leaf-deep);font-size:31px}
 
 /* ---------- section shell (stats panels share this) ---------- */
 .panel{margin-top:30px;padding:36px 30px;border:3px solid var(--line);border-radius:30px;background:var(--card);box-shadow:5px 6px 0 #00000012}
 .panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;gap:12px}
-.panelHeader h2{margin:0;font-size:28px;font-weight:400}
-.badgeSmall{padding:10px 16px;border-radius:999px;background:var(--mint);border:2px solid var(--line);font-size:17px}
+.panelHeader h2{margin:0;font-size:31px;font-weight:400}
+.badgeSmall{padding:10px 16px;border-radius:999px;background:var(--mint);border:2px solid var(--line);font-size:19px}
 
 /* ---------- grade stats ---------- */
 .gradeList{display:flex;flex-direction:column;gap:18px}
 .gradeRow{padding:20px 22px;border:2.5px solid var(--line);border-radius:20px;background:#fff}
 .gradeRowTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
-.gradeName{flex:1;font-size:24px;display:flex;align-items:center;gap:8px}
-.gradeMeta{font-size:17px;opacity:.7}
-.gradeHours{font-size:23px;color:var(--leaf-deep)}
+.gradeName{flex:1;font-size:27px;display:flex;align-items:center;gap:8px}
+.gradeMeta{font-size:19px;opacity:.7}
+.gradeHours{font-size:26px;color:var(--leaf-deep)}
 .gradeTrack{height:12px;border-radius:999px;background:#00000012;overflow:hidden}
 .gradeTrack span{display:block;height:100%;border-radius:inherit;background:var(--leaf)}
 
-.gradeDayGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:16px}
-.gradeDayCell{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border:2px solid var(--line);border-radius:14px;background:#faf6e0}
-.gradeDayCell.hasValue{background:#eaf6e3;border-color:var(--leaf)}
-.gradeDayCell .dow{font-size:16px;opacity:.7}
-.gradeDayCell .val{font-size:19px}
-.gradeDayCell.hasValue .val{color:var(--leaf-deep)}
+.gradeTeacherTable{width:100%;table-layout:fixed;border-collapse:collapse;margin-top:16px}
+.gradeTeacherTable th,.gradeTeacherTable td{width:50%;padding:12px 8px;border:1.5px solid var(--line);text-align:center}
+.gradeTeacherTable thead th{background:#f4f0dd;font-weight:400;font-size:21px}
+.gradeTeacherTable tbody td{font-size:21px}
+.gradeTeacherTable tbody td:last-child{color:var(--leaf-deep)}
 
-.rankingEmpty{margin:0;font-size:20px;opacity:.75}
+.rankingEmpty{margin:0;font-size:22px;opacity:.75}
 
 /* ---------- daily goal status ---------- */
 .dailyGoalGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
 .dailyGoalCell{display:flex;flex-direction:column;align-items:center;gap:6px;padding:18px 6px;border:2.5px solid var(--line);border-radius:18px;background:#faf6e0}
-.dailyGoalCell .dow{font-size:19px}
-.dailyGoalCell .hrs{font-size:17px;opacity:.75}
-.dailyGoalCell .status{font-size:24px}
+.dailyGoalCell .dow{font-size:21px}
+.dailyGoalCell .hrs{font-size:18px;opacity:.75}
+.dailyGoalCell .status{font-size:27px}
 .dailyGoalCell.pass{background:#eaf6e3;border-color:var(--leaf)}
 .dailyGoalCell.fail{background:#fbe7e3;border-color:var(--coral-deep)}
 .dailyGoalCell.today{background:#fff6d8;border-color:var(--yellow-deep)}
 .dailyGoalCell.upcoming{opacity:.55}
 
 /* ---------- status box ---------- */
-.statusBox{margin-top:22px;padding:26px 24px;border:3px solid var(--line);border-radius:26px;background:var(--card);box-shadow:4px 5px 0 #00000012;text-align:center}
-.statusBox p{margin:0;font-size:22px;line-height:1.6}
+.statusBox{margin-top:22px;padding:28px 26px;border:3px solid var(--line);border-radius:26px;background:var(--card);box-shadow:4px 5px 0 #00000012;text-align:center}
+.statusBox p{margin:0;font-size:25px;line-height:1.6}
+.statusBox p + p{margin-top:12px}
 .statusBox strong{color:var(--coral-deep);font-weight:400}
+.statusBox .statusNote{margin-top:16px;font-size:15px;line-height:1.6;opacity:.7}
+.statusBox .statusNote strong{color:inherit}
 
-/* ---------- teacher table ---------- */
-.teacherTableWrap{overflow-x:auto}
-.teacherTable{border-collapse:collapse;width:100%;min-width:600px;font-size:18px}
-.teacherTable th,.teacherTable td{padding:12px 10px;border:1.5px solid var(--line);text-align:center;white-space:nowrap}
-.teacherTable thead th{background:#f4f0dd;font-size:17px;font-weight:400}
-.teacherTable td.teacherNameCol,.teacherTable th.teacherNameCol{text-align:left;position:sticky;left:0;background:#fff;z-index:1;min-width:130px}
-.teacherTable thead th.teacherNameCol{z-index:2;background:#f4f0dd}
-.teacherTable td.teacherNameCol strong{display:block;font-size:19px}
-.teacherTable td.teacherNameCol small{display:block;color:var(--leaf-deep);font-size:14px}
-.teacherTable td.teacherTotalCol{color:var(--leaf-deep);font-weight:600}
+/* ---------- goto button ---------- */
+.gotoButton{display:block;width:100%;margin-top:26px;padding:22px 16px;border:3px solid var(--line);border-radius:22px;background:var(--leaf);color:#fff;font-size:24px;text-align:center;text-decoration:none;box-shadow:4px 5px 0 #00000018}
+.gotoButton:hover{background:var(--leaf-deep)}
+.gotoButton:active{transform:translate(2px,2px);box-shadow:2px 3px 0 #00000018}
 
 *:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:3px}
 
 @media(max-width:640px){
-  body{font-size:17px}
+  body{font-size:19px}
   main{padding:26px 14px 56px}
   .heroBadges{margin-bottom:-12px}
-  .pill{padding:11px 16px;font-size:16px}
+  .pill{padding:12px 18px;font-size:18px}
   .starburst{margin-top:18px}
   .treeMascot{width:56px}
   .goalRow,.rewardRow{grid-template-columns:1fr}
   .panel{padding:26px 18px;border-radius:24px}
   .infoBox{padding:22px 18px}
   .processStep{min-width:100px}
-  .gradeDayGrid{grid-template-columns:repeat(3,1fr)}
-  .gradeName{font-size:21px}
-  .gradeHours{font-size:20px}
+  .gradeName{font-size:23px}
+  .gradeHours{font-size:22px}
+  .gradeTeacherTable thead th,.gradeTeacherTable tbody td{font-size:18px}
   .dailyGoalGrid{grid-template-columns:repeat(3,1fr);gap:8px}
-  .statusBox p{font-size:19px}
+  .statusBox p{font-size:21px}
+  .gotoButton{font-size:21px}
 }
