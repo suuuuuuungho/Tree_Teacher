@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { WINDOW_START, WINDOW_END, DAILY_GOAL_MINUTES, WEEKLY_GOAL_MINUTES } from "./lib/window";
 
-type GradeStat = { grade: string; total: number; entries: number };
-type RankingEntry = { name: string; grade: string; total: number };
+type DayStat = { date: string; label: string; minutes: number };
+type GradeStat = { grade: string; total: number; entries: number; byDate: DayStat[] };
 
 type Summary = {
   configured: boolean;
@@ -13,7 +13,6 @@ type Summary = {
   todayTotal?: number;
   weekTotal?: number;
   byGrade?: GradeStat[];
-  ranking?: RankingEntry[];
 };
 
 function formatHours(minutes: number) {
@@ -21,6 +20,13 @@ function formatHours(minutes: number) {
   const rest = minutes % 60;
   if (minutes <= 0) return "0시간";
   return rest === 0 ? `${hours}시간` : `${hours}시간 ${rest}분`;
+}
+
+function formatDay(minutes: number) {
+  if (minutes <= 0) return "-";
+  const hours = Math.floor(minutes / 60);
+  const rest = minutes % 60;
+  return rest === 0 ? `${hours}시간` : `${hours}.${Math.round((rest / 60) * 10)}시간`;
 }
 
 function TreeMascot() {
@@ -64,10 +70,6 @@ export default function Home() {
   const weekTotal = summary.weekTotal ?? 0;
   const todayTotal = summary.todayTotal ?? 0;
   const weekGoalMet = weekTotal >= WEEKLY_GOAL_MINUTES;
-  const ranking = useMemo(
-    () => (summary.ranking ?? []).map((entry, index, arr) => ({ ...entry, rank: arr.findIndex((other) => other.total === entry.total) + 1 })),
-    [summary.ranking],
-  );
 
   return <main>
     <section className="hero">
@@ -133,7 +135,6 @@ export default function Home() {
       <span className="processArrow">▶</span>
       <div className="processStep yellow"><span>간식 쓰기</span><strong>다음 주</strong></div>
     </div>
-    <p className="processNote">* 간식은 다음주 교사회의 때 · 정산 기간 {WINDOW_START} ~ {WINDOW_END}</p>
 
     <div className="infoBox">
       <h3>정산은 이렇게!</h3>
@@ -152,38 +153,23 @@ export default function Home() {
       </div>
       {!summary.configured ? <p className="rankingEmpty">통계를 불러오고 있어요.</p> : byGrade.length === 0 ? <p className="rankingEmpty">아직 집계된 기록이 없어요.</p> : <div className="gradeList">
         {byGrade.map((row) => {
-          const isCompeting = row.grade !== "미배정";
-          const isTop = isCompeting && topGrade && row.total === topGrade.total && row.total > 0;
-          const isLast = isCompeting && lastGrade && competing.length > 1 && row.total === lastGrade.total && row.total < (topGrade?.total ?? 0);
           const fairShare = WEEKLY_GOAL_MINUTES / Math.max(1, competing.length);
-          return <div className={`gradeRow${isTop ? " top" : ""}${isLast ? " last" : ""}`} key={row.grade}>
+          return <div className="gradeRow" key={row.grade}>
             <div className="gradeRowTop">
-              <span className="gradeName">
-                {row.grade}
-                {isTop && <span className="gradeTag top">1등 👑</span>}
-                {isLast && <span className="gradeTag last">꼴찌</span>}
-              </span>
+              <span className="gradeName">{row.grade}</span>
               <span className="gradeMeta">{row.entries}명</span>
               <span className="gradeHours">{formatHours(row.total)}</span>
             </div>
             {row.grade !== "미배정" && <div className="gradeTrack"><span style={{ width: `${Math.min(100, (row.total / fairShare) * 100)}%` }} /></div>}
+            <div className="gradeDayGrid">
+              {row.byDate.map((day) => <div className={`gradeDayCell${day.minutes > 0 ? " hasValue" : ""}`} key={day.date}>
+                <span className="dow">{day.label}</span>
+                <span className="val">{formatDay(day.minutes)}</span>
+              </div>)}
+            </div>
           </div>;
         })}
       </div>}
-    </section>
-
-    <section className="panel" aria-labelledby="ranking-title">
-      <div className="panelHeader">
-        <h2 id="ranking-title">교사 개인 랭킹</h2>
-        <span className="badgeSmall">{WINDOW_START.slice(5)}~{WINDOW_END.slice(5)}</span>
-      </div>
-      {ranking.length === 0 ? <p className="rankingEmpty">아직 순위에 오른 기도가 없어요.</p> : <ol className="rankingList">
-        {ranking.map((entry) => <li key={entry.name} className={entry.rank <= 3 ? `rank-${entry.rank}` : undefined}>
-          <span className="rankingRank">{entry.rank}</span>
-          <span className="rankingName">{entry.name}<small>{entry.grade}</small></span>
-          <span className="rankingCount">{formatHours(entry.total)}</span>
-        </li>)}
-      </ol>}
     </section>
 
     <p className="closing">중등부 500명 예배자를 위하여</p>

@@ -16,7 +16,7 @@
 }
 *{box-sizing:border-box}
 html,body,button,input,select{font-family:inherit}
-body{margin:0;background:radial-gradient(circle at 18% 0%,var(--bg-deep) 0%,var(--bg) 46%);color:var(--ink);font-family:var(--font-hand);word-break:keep-all}
+body{margin:0;background:radial-gradient(circle at 18% 0%,var(--bg-deep) 0%,var(--bg) 46%);color:var(--ink);font-family:var(--font-hand);font-size:18px;word-break:keep-all}
 button,input,select{font:inherit}
 strong,b{font-weight:inherit}
 main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relative}
@@ -24,27 +24,27 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 /* ---------- hero / poster header ---------- */
 .hero{position:relative;padding:8px 0 28px;text-align:center}
 .heroBadges{display:flex;align-items:flex-start;justify-content:space-between;padding:0 4px;margin-bottom:-18px;position:relative;z-index:2}
-.pill{display:inline-flex;align-items:center;gap:6px;padding:12px 20px;border:2.5px solid var(--line);border-radius:999px;font-size:16px;line-height:1;background:var(--mint);box-shadow:3px 4px 0 #00000014;white-space:nowrap}
+.pill{display:inline-flex;align-items:center;gap:6px;padding:14px 22px;border:2.5px solid var(--line);border-radius:999px;font-size:20px;line-height:1;background:var(--mint);box-shadow:3px 4px 0 #00000014;white-space:nowrap}
 .pill:after{content:"";position:absolute;width:12px;height:12px;background:inherit;border-right:2.5px solid var(--line);border-bottom:2.5px solid var(--line);transform:translateY(60%) rotate(45deg);left:26px;bottom:-9px}
 .pill{position:relative}
 .pill.pink{background:var(--pink)}
 .pill.sky{background:var(--sky)}
 .pill.pink:after{right:26px;left:auto}
 
-.decor{position:absolute;font-size:26px;line-height:1;user-select:none;pointer-events:none;filter:drop-shadow(2px 2px 0 #00000010)}
+.decor{position:absolute;font-size:28px;line-height:1;user-select:none;pointer-events:none;filter:drop-shadow(2px 2px 0 #00000010)}
 .decor.heart1{top:-6px;right:20%;color:#f6a8bd}
 .decor.heart2{bottom:38%;left:6%;color:#f3a79b}
-.decor.star1{top:34%;left:2%;color:#5fbfa6;font-size:22px}
-.decor.star2{top:8%;right:0;color:#eeb711;font-size:20px}
-.decor.star3{bottom:8%;right:8%;color:#4f8b2c;font-size:28px}
+.decor.star1{top:34%;left:2%;color:#5fbfa6;font-size:24px}
+.decor.star2{top:8%;right:0;color:#eeb711;font-size:22px}
+.decor.star3{bottom:8%;right:8%;color:#4f8b2c;font-size:30px}
 
 .starburst{position:relative;margin:26px auto 0;width:min(92%,520px);aspect-ratio:1/0.86;display:flex;align-items:center;justify-content:center}
 .starburstShape{position:absolute;inset:0;background:var(--white);border:3px solid var(--line);clip-path:polygon(50.00% 0.00%, 55.83% 9.42%, 64.09% 2.03%, 67.03% 12.71%, 77.03% 7.94%, 76.85% 19.01%, 87.79% 17.26%, 84.49% 27.83%, 95.48% 29.23%, 89.34% 38.45%, 99.49% 42.88%, 91.00% 50.00%, 99.49% 57.12%, 89.34% 61.55%, 95.48% 70.77%, 84.49% 72.17%, 87.79% 82.74%, 76.85% 80.99%, 77.03% 92.06%, 67.03% 87.29%, 64.09% 97.97%, 55.83% 90.58%, 50.00% 100.00%, 44.17% 90.58%, 35.91% 97.97%, 32.97% 87.29%, 22.97% 92.06%, 23.15% 80.99%, 12.21% 82.74%, 15.51% 72.17%, 4.52% 70.77%, 10.66% 61.55%, 0.51% 57.12%, 9.00% 50.00%, 0.51% 42.88%, 10.66% 38.45%, 4.52% 29.23%, 15.51% 27.83%, 12.21% 17.26%, 23.15% 19.01%, 22.97% 7.94%, 32.97% 12.71%, 35.91% 2.03%, 44.17% 9.42%)}
-.starburstInner{position:relative;z-index:1;padding:14px 20px;max-width:66%}
-.starburstInner .eyebrow{margin:0;font-size:16px;color:var(--ink)}
-.starburstInner h1{margin:8px 0 4px;font-size:clamp(22px,4.6vw,30px);font-weight:400;line-height:1.28}
-.starburstInner h1 mark{background:var(--yellow);padding:2px 8px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.starburstInner .sub{margin:2px 0 0;font-size:clamp(20px,4.2vw,26px)}
+.starburstInner{position:relative;z-index:1;padding:14px 20px;max-width:70%}
+.starburstInner .eyebrow{margin:0;font-size:20px;color:var(--ink)}
+.starburstInner h1{margin:10px 0 6px;font-size:clamp(28px,6vw,40px);font-weight:400;line-height:1.28}
+.starburstInner h1 mark{background:var(--yellow);padding:3px 10px;border-radius:8px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.starburstInner .sub{margin:2px 0 0;font-size:clamp(26px,5.6vw,34px)}
 
 .treeMascot{position:absolute;left:-4px;bottom:2%;width:76px}
 .spiritBadge{position:absolute;right:-6px;bottom:10%}
@@ -52,13 +52,13 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 /* ---------- goal cards ---------- */
 .goalRow{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:38px}
 .goalCard{display:flex;flex-direction:column;align-items:center;gap:14px}
-.goalLabel{display:inline-block;padding:12px 18px;border:2.5px solid var(--line);border-radius:999px;font-size:16px;background:var(--mint);box-shadow:3px 4px 0 #00000014}
+.goalLabel{display:inline-block;padding:14px 20px;border:2.5px solid var(--line);border-radius:999px;font-size:20px;background:var(--mint);box-shadow:3px 4px 0 #00000014}
 .goalLabel.sky{background:var(--sky)}
 .goalBox{width:100%;padding:26px 12px;text-align:center;border:3px solid var(--line);border-radius:26px;background:var(--card);box-shadow:4px 5px 0 #00000012}
-.goalBox strong{font-size:clamp(34px,7vw,48px);font-weight:400;color:var(--ink)}
-.goalBox em{margin-left:6px;font-size:18px;font-style:normal;color:var(--ink);opacity:.75}
-.goalBox small{display:block;margin-top:8px;font-size:14px;opacity:.7}
-.goalTrack{margin-top:10px;height:10px;border-radius:999px;background:#00000012;overflow:hidden}
+.goalBox strong{font-size:clamp(44px,9vw,64px);font-weight:400;color:var(--ink)}
+.goalBox em{margin-left:8px;font-size:23px;font-style:normal;color:var(--ink);opacity:.75}
+.goalBox small{display:block;margin-top:10px;font-size:17px;opacity:.7}
+.goalTrack{margin-top:12px;height:12px;border-radius:999px;background:#00000012;overflow:hidden}
 .goalTrack span{display:block;height:100%;border-radius:inherit;background:var(--leaf);transition:width .4s ease}
 
 /* ---------- reward / penalty ---------- */
@@ -66,98 +66,67 @@ main{width:min(100%,760px);margin:0 auto;padding:36px 20px 72px;position:relativ
 .rewardCard{padding:28px 20px;text-align:center;border:3px solid var(--line);border-radius:26px;box-shadow:4px 5px 0 #00000012}
 .rewardCard.yes{background:var(--yellow)}
 .rewardCard.no{background:var(--coral)}
-.rewardCard p{margin:0 0 6px;font-size:17px}
-.rewardCard strong{display:block;margin-top:6px;font-size:clamp(19px,3.6vw,23px);font-weight:400}
-.rewardCard .liveTag{display:inline-block;margin-top:14px;padding:7px 14px;border-radius:999px;background:#ffffffb0;border:2px solid var(--line);font-size:14px}
+.rewardCard p{margin:0 0 8px;font-size:21px}
+.rewardCard strong{display:block;margin-top:8px;font-size:clamp(24px,4.6vw,30px);font-weight:400}
+.rewardCard .liveTag{display:inline-block;margin-top:16px;padding:8px 16px;border-radius:999px;background:#ffffffb0;border:2px solid var(--line);font-size:17px}
 
 /* ---------- process pills ---------- */
 .processRow{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:26px;flex-wrap:wrap}
-.processStep{flex:1;min-width:120px;max-width:180px;padding:18px 10px;text-align:center;border:2.5px solid var(--line);border-radius:22px;background:var(--mint)}
+.processStep{flex:1;min-width:120px;max-width:180px;padding:20px 10px;text-align:center;border:2.5px solid var(--line);border-radius:22px;background:var(--mint)}
 .processStep.sky{background:var(--sky)}
 .processStep.yellow{background:var(--yellow)}
-.processStep span{display:block;font-size:15px;opacity:.8}
-.processStep strong{display:block;margin-top:6px;font-size:19px;font-weight:400}
-.processArrow{font-size:20px;color:var(--ink);flex:none}
-.processNote{margin:10px 4px 0;font-size:13px;opacity:.7}
+.processStep span{display:block;font-size:18px;opacity:.8}
+.processStep strong{display:block;margin-top:8px;font-size:24px;font-weight:400}
+.processArrow{font-size:24px;color:var(--ink);flex:none}
 
 /* ---------- info box ---------- */
 .infoBox{margin-top:22px;padding:30px 26px;border:3px solid var(--line);border-radius:28px;background:var(--card);box-shadow:4px 5px 0 #00000012}
-.infoBox h3{margin:0 0 16px;font-size:22px;font-weight:400}
-.infoBox ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-.infoBox li{display:flex;gap:10px;align-items:baseline;font-size:16px;line-height:1.5}
-.infoBox li:before{content:"";width:9px;height:9px;flex:none;border-radius:50%;background:var(--leaf);margin-top:6px}
+.infoBox h3{margin:0 0 18px;font-size:28px;font-weight:400}
+.infoBox ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.infoBox li{display:flex;gap:10px;align-items:baseline;font-size:20px;line-height:1.5}
+.infoBox li:before{content:"";width:10px;height:10px;flex:none;border-radius:50%;background:var(--leaf);margin-top:8px}
 
-.closing{margin:44px 0 0;text-align:center;color:var(--leaf-deep);font-size:22px}
+.closing{margin:44px 0 0;text-align:center;color:var(--leaf-deep);font-size:28px}
 
-/* ---------- section shell (form / stats / ranking share this) ---------- */
+/* ---------- section shell (stats panels share this) ---------- */
 .panel{margin-top:30px;padding:36px 30px;border:3px solid var(--line);border-radius:30px;background:var(--card);box-shadow:5px 6px 0 #00000012}
 .panelHeader{display:flex;align-items:center;justify-content:space-between;margin-bottom:26px;gap:12px}
-.panelHeader h2{margin:0;font-size:23px;font-weight:400}
-.badgeSmall{padding:9px 14px;border-radius:999px;background:var(--mint);border:2px solid var(--line);font-size:14px}
-
-.field{display:block;margin-bottom:24px}
-.field>span{display:flex;align-items:baseline;gap:10px;margin-bottom:11px;font-size:18px}
-.field input,.field select{width:100%;height:60px;padding:0 18px;border:2px solid var(--line);border-radius:18px;outline:none;color:var(--ink);background:#fff;font-size:18px}
-.field input:focus,.field select:focus{border-color:var(--leaf-deep);box-shadow:0 0 0 4px #356b1c1a}
-.fieldNote{color:var(--leaf-deep);font-size:13px}
-.gradeReadout{display:inline-block;margin-top:2px;padding:6px 12px;border-radius:999px;background:var(--sky);border:2px solid var(--line);font-size:14px}
-
-.submitButton{width:100%;height:62px;border:2.5px solid var(--line);border-radius:18px;color:var(--ink);background:var(--yellow);font-size:19px;cursor:pointer;box-shadow:3px 4px 0 #00000014}
-.submitButton:hover{background:var(--yellow-deep)}
-.submitButton:active{transform:translate(2px,2px);box-shadow:1px 2px 0 #00000014}
-.submitButton:disabled{opacity:.6;cursor:default}
-.successMessage{margin:16px 0 0;padding:15px 18px;border:2px solid #bfd9ae;border-radius:16px;color:var(--leaf-deep);background:#f1f8ec;text-align:center;font-size:17px;line-height:1.5}
-.adminError{margin:0 0 14px;color:#c0392b;font-size:15px}
-
-.todayRow{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
-.todayRow:last-of-type{margin-bottom:0}
-.todayRow select{padding:8px 12px;border:2px solid var(--line);border-radius:12px;font-size:16px;color:var(--ink);background:#fff}
-.todayActions{display:flex;gap:8px}
-.todayActions button{padding:9px 14px;border:0;border-radius:10px;background:var(--leaf-deep);color:#fff;font-size:14px;cursor:pointer}
-.todayActions button.danger{background:#c0392b}
-.todayActions button:disabled{opacity:.6;cursor:default}
-.outOfWindow{margin:0;padding:16px 18px;border:2px dashed var(--line);border-radius:16px;font-size:15px;text-align:center;color:var(--ink);opacity:.75}
+.panelHeader h2{margin:0;font-size:28px;font-weight:400}
+.badgeSmall{padding:10px 16px;border-radius:999px;background:var(--mint);border:2px solid var(--line);font-size:17px}
 
 /* ---------- grade stats ---------- */
-.gradeList{display:flex;flex-direction:column;gap:14px}
-.gradeRow{padding:18px 20px;border:2.5px solid var(--line);border-radius:20px;background:#fff}
-.gradeRowTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:10px}
-.gradeRank{display:flex;align-items:center;justify-content:center;width:30px;height:30px;flex:none;border-radius:50%;background:#f4f0dd;font-size:14px;font-weight:600}
-.gradeRow.top .gradeRank{background:var(--yellow-deep);color:#fff}
-.gradeRow.last .gradeRank{background:var(--coral-deep);color:#fff}
-.gradeName{flex:1;font-size:19px;display:flex;align-items:center;gap:8px}
-.gradeTag{font-size:12px;padding:3px 9px;border-radius:999px;border:1.5px solid var(--line)}
-.gradeTag.top{background:var(--yellow)}
-.gradeTag.last{background:var(--coral)}
-.gradeMeta{font-size:14px;opacity:.7}
-.gradeHours{font-size:18px;color:var(--leaf-deep)}
-.gradeTrack{height:10px;border-radius:999px;background:#00000012;overflow:hidden}
+.gradeList{display:flex;flex-direction:column;gap:18px}
+.gradeRow{padding:20px 22px;border:2.5px solid var(--line);border-radius:20px;background:#fff}
+.gradeRowTop{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px}
+.gradeName{flex:1;font-size:24px;display:flex;align-items:center;gap:8px}
+.gradeMeta{font-size:17px;opacity:.7}
+.gradeHours{font-size:23px;color:var(--leaf-deep)}
+.gradeTrack{height:12px;border-radius:999px;background:#00000012;overflow:hidden}
 .gradeTrack span{display:block;height:100%;border-radius:inherit;background:var(--leaf)}
 
-/* ---------- ranking ---------- */
-.rankingList{list-style:none;margin:0;padding:0;max-height:440px;overflow-y:auto}
-.rankingList li{display:flex;align-items:center;gap:14px;padding:12px 6px;border-bottom:1px solid var(--line)}
-.rankingList li:last-child{border-bottom:0}
-.rankingRank{display:flex;align-items:center;justify-content:center;width:30px;height:30px;flex:none;border-radius:50%;background:#f4f0dd;font-size:14px;font-weight:600}
-.rankingName{flex:1;min-width:0;font-size:18px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.rankingName small{margin-left:8px;color:var(--leaf-deep);font-size:13px}
-.rankingCount{flex:none;color:var(--leaf-deep);font-size:17px}
-.rankingList li.rank-1,.rankingList li.rank-2,.rankingList li.rank-3{border-bottom:0;border-radius:14px;margin-bottom:5px;padding:12px 10px}
-.rankingList li.rank-1{background:#fff3cf}.rankingList li.rank-1 .rankingRank{background:var(--yellow-deep);color:#fff}
-.rankingList li.rank-2{background:#f1f2f4}.rankingList li.rank-2 .rankingRank{background:#9aa0ab;color:#fff}
-.rankingList li.rank-3{background:#fbeee0}.rankingList li.rank-3 .rankingRank{background:#b9773f;color:#fff}
-.rankingEmpty{margin:0;font-size:16px;opacity:.75}
+.gradeDayGrid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;margin-top:16px}
+.gradeDayCell{display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 4px;border:2px solid var(--line);border-radius:14px;background:#faf6e0}
+.gradeDayCell.hasValue{background:#eaf6e3;border-color:var(--leaf)}
+.gradeDayCell .dow{font-size:16px;opacity:.7}
+.gradeDayCell .val{font-size:19px}
+.gradeDayCell.hasValue .val{color:var(--leaf-deep)}
+
+.rankingEmpty{margin:0;font-size:20px;opacity:.75}
 
 *:focus-visible{outline:3px solid var(--yellow-deep);outline-offset:3px}
 
 @media(max-width:640px){
+  body{font-size:17px}
   main{padding:26px 14px 56px}
   .heroBadges{margin-bottom:-12px}
-  .pill{padding:10px 14px;font-size:13px}
+  .pill{padding:11px 16px;font-size:16px}
   .starburst{margin-top:18px}
   .treeMascot{width:56px}
   .goalRow,.rewardRow{grid-template-columns:1fr}
   .panel{padding:26px 18px;border-radius:24px}
   .infoBox{padding:22px 18px}
   .processStep{min-width:100px}
+  .gradeDayGrid{grid-template-columns:repeat(3,1fr)}
+  .gradeName{font-size:21px}
+  .gradeHours{font-size:20px}
 }
